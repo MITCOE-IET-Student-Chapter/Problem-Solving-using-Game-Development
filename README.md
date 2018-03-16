@@ -7,4 +7,5 @@
 
 ## Snake
 
-## Solar System Animation
+## The Island Game
+
