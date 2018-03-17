@@ -9,19 +9,37 @@ function Snake(x, y) {
     this.w = 20
 
     this.tail = []
+    this.total = 0
 
     this.show = function () {
 
         fill(255)
         rect(this.x, this.y, this.w, this.w)
 
-        for (var i = 0; i < this.tail.length; i++) {
+        if (this.tail.length > 0) {
+
+            for (var i = 0; i < this.tail.length; i++) {
+
+                var x = this.tail[i].x
+                var y = this.tail[i].y
+
+                rect(x, y, this.w, this.w)
+
+            }
 
         }
 
     }
 
     this.update = function () {
+
+        for (var i = 0; i < this.tail.length - 1; i++) {
+            this.tail[i] = this.tail[i + 1];
+        } 
+        if (this.total >= 1) {
+            this.tail[this.total - 1] = createVector(this.x, this.y);
+        }
+
 
         this.x += this.xSpeed * this.scale
         this.y += this.ySpeed * this.scale
@@ -41,7 +59,6 @@ function Snake(x, y) {
             this.y = 0
 
         } else if (this.y < 0) {
-            
 
             this.y = height
 
@@ -49,7 +66,23 @@ function Snake(x, y) {
 
     }
 
-    this.direction = function(xspeed, yspeed) {
+    this.hasEaten = function (food) {
+
+
+        var d = dist(this.x, this.y, food.x, food.y)
+
+        if (d < this.w) {
+
+            this.total += 1
+            return true
+
+        }
+
+        return false
+
+    }
+
+    this.direction = function (xspeed, yspeed) {
 
         this.xSpeed = xspeed;
         this.ySpeed = yspeed;

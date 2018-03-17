@@ -8,9 +8,9 @@ var rows, cols;
 
 function setup() {
   // put setup code here
-  createCanvas(innerWidth, innerHeight)
+  createCanvas(800, 800)
 
-  frameRate(10)
+  frameRate(5)
 
   snake = new Snake(200, 200)
   food = new Food()
@@ -23,6 +23,9 @@ function draw() {
   snake.show()
   food.show()
   snake.update()
+  if (snake.hasEaten(food)) {
+    food.setLocation()
+  }
 
 
 
@@ -56,8 +59,9 @@ function Food() {
 
     var cols = floor(width / this.scale)
     var rows = floor(height / this.scale)
-    this.x = floor(random(cols))
-    this.y = floor(random(rows))
+    this.x = floor(random(cols)) * this.scale
+    this.y = floor(random(rows)) * this.scale
+
   }
   this.scale = 20
   this.setLocation()
