@@ -26,8 +26,7 @@ function draw() {
   if (snake.hasEaten(food)) {
     food.setLocation()
   }
-
-
+  snake.death()
 
 }
 

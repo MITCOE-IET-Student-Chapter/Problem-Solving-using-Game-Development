@@ -5,6 +5,7 @@ function Snake(x, y) {
     this.y = y;
     this.xSpeed = 0;
     this.ySpeed = 1
+    this.score
 
     this.w = 20
 
@@ -24,6 +25,26 @@ function Snake(x, y) {
                 var y = this.tail[i].y
 
                 rect(x, y, this.w, this.w)
+
+            }
+
+        }
+
+    }
+
+    this.death = function() {
+
+        for (var i = 0;i < this.tail.length;i++) {
+
+            var x = this.tail[i].x
+            var y = this.tail[i].y
+
+            var d = dist(this.x, this.y, x, y)
+            if (d < this.w) {
+
+                this.tail = []
+                this.total = 0
+                      
 
             }
 
